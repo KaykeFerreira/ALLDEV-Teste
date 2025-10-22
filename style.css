@@ -1,0 +1,157 @@
+/* Variáveis de cores baseadas no layout da imagem (laranja e verde escuro) */
+:root {
+    --primary-color: #ff7f41; /* Laranja da barra lateral/botões */
+    --secondary-color: #2f4f4f; /* Verde escuro do rodapé/menu */
+    --background-light: #f4f4f9;
+}
+
+/* Estilização da página de Login */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Fundo degradê sutil ou cor neutra */
+    background: linear-gradient(135deg, #f0f0f5 0%, #ffffff 100%); 
+}
+
+.login-container {
+    width: 90%;
+    max-width: 400px; /* Largura máxima para a caixa de login */
+    padding: 20px;
+    background-color: transparent; /* A caixa de login em si é transparente */
+}
+
+.logo-text {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.login-form-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.login-avatar {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: -10px; /* Ajuste sutil para parecer flutuante */
+    border: 5px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.btn-login {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #e5703a; /* Laranja um pouco mais escuro no hover */
+    border-color: #e5703a;
+    color: white;
+}
+
+/* --- Estilos para o Dashboard --- */
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px; /* Largura da barra lateral */
+    background-color: var(--primary-color); /* Laranja */
+    color: white;
+}
+
+.sidebar-heading {
+    padding: 1.5rem 1.25rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.list-group-item {
+    border: none !important;
+    background-color: transparent !important;
+    color: white !important;
+    padding: 0.75rem 1.25rem !important;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.list-group-item:hover, .active-menu {
+    background-color: #e5703a !important; /* Laranja mais escuro */
+    color: white !important;
+    font-weight: 500;
+}
+
+#page-content-wrapper {
+    min-width: calc(100% - 250px);
+    background-color: var(--background-light);
+}
+
+.navbar {
+    background-color: white !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.user-avatar-small {
+    background-color: var(--secondary-color);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Estilo para os cards de Ações Rápidas */
+.action-card {
+    border: 1px solid #ddd;
+    border-left: 5px solid var(--primary-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos para Tabela */
+.table-dark-custom {
+    background-color: var(--secondary-color); /* Verde escuro */
+    color: white;
+}
+
+/* Garante que o conteúdo principal ocupe o espaço */
+#page-content-wrapper {
+    flex-grow: 1;
+}
