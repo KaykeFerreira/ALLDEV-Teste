@@ -1,16 +1,20 @@
-/* Variáveis de cores baseadas na sua última referência (Login) */
+/* Variáveis de cores baseadas no seu tema */
 :root {
-    --primary-color: #FF6828; /* Laranja forte (Botões, Destaque) */
-    --secondary-color: #000000; /* Cinza Escuro (Botão Padrão, Títulos de Tabela) */
+    --primary-color: #FF6828; /* Laranja forte (Fundo da Sidebar) */
+    --secondary-color: #000000; /* Preto (Texto do menu e Botões) */
     --accent-light-bg: #fff0e3; /* Fundo da caixa de login */
-    --sidebar-bg: #e5e5e5; /* Cinza-claro da Sidebar (Mantido do último ajuste visual) */
-    --content-bg: #f4f4f9; /* Fundo da área de conteúdo (Dashboard Body) */
-    --text-dark: #000000; /* Cor de texto geral */
+    
+    --sidebar-bg: var(--primary-color); 
+    --active-menu-bg: #E5E5E5; /* Cinza claro para item ativo (conforme imagem) */
+    
+    --content-bg: #f4f4f9; /* Fundo da área de conteúdo */
+    
+    --text-dark: #000000; 
+    --navbar-bg: #FFFFFF; /* Cor de fundo da Navbar (Branco) */
 }
 
-/* --- Estilos da Página de Login (REMODELADA) --- */
+/* --- Estilos da Página de Login (MANTIDOS) --- */
 .login-page {
-    /* Novo fundo do body: Degradê suave */
     background: linear-gradient(to bottom, #f27136, #d5d5b3, #94b19f); 
     display: flex;
     justify-content: center;
@@ -24,27 +28,20 @@
     width: 90%;
     max-width: 400px; 
     padding: 50px;
-    /* Estilos da caixa de login (.wrapper) */
     background-color: var(--accent-light-bg); 
     box-shadow: 0 0 100px #FFBD9A;
     border-radius: 8px;
-    /* Removemos a box-shadow padrão para usar a nova */
 }
 
 .logo-text {
-    font-size: 24px; /* H2 da referência */
+    font-size: 24px; 
     color: var(--secondary-color);
     text-align: center;
     margin-bottom: 20px;
     font-weight: bold;
 }
 
-/* Escondendo o avatar circular para adotar o visual minimalista do novo login */
-.login-avatar {
-    display: none; 
-}
 .login-form-box {
-    /* Eliminamos a box-shadow dupla, o container já tem o estilo. */
     background-color: transparent;
     padding: 0;
     border-radius: 0;
@@ -54,7 +51,7 @@
 
 .form-label {
     font-weight: bold;
-    color: var(--text-dark);
+    color: var(--secondary-color);
 }
 
 .form-control {
@@ -66,7 +63,6 @@
     border-radius: 4px;
 }
 
-/* Estilo do botão (cor Cinza Escuro) */
 .btn-login {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
@@ -80,25 +76,15 @@
 }
 
 .btn-login:hover {
-    background-color: #000000; 
-    border-color: #000000;
+    background-color: #333333; 
+    border-color: #333333;
     color: white;
 }
 
-/* Estilos de Registro (Se aplicável) */
 .register {
     text-align: center;
     font-size: 15px;
     margin-top: 15px;
-}
-
-.register a {
-    color: #0000FF;
-    text-decoration: underline;
-}
-
-.register a:hover {
-    text-decoration: underline;
 }
 
 /* --- Estilos para o Dashboard e páginas internas --- */
@@ -110,134 +96,184 @@
     display: flex;
 }
 
-/* SIDEBAR: Fundo claro (Mantido o último ajuste) */
-#sidebar-wrapper {
-    min-height: 100vh;
-    width: 250px; 
-    background-color: var(--sidebar-bg); 
-    color: var(--text-dark); 
-    border-right: 1px solid #c8c8c8; 
+/* NAVBAR SUPERIOR */
+#top-navbar.navbar {
+    background-color: var(--navbar-bg) !important; 
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem; 
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    border-bottom: 1px solid #e0e0e0 !important; 
+    width: 100%; 
 }
 
-.sidebar-heading {
-    padding: 1.5rem 1.25rem;
+/* Estilo do Logo/Nome do Sistema na Navbar */
+.navbar-logo-text {
+    width: auto; 
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--secondary-color); 
-    text-align: center;
-    border-bottom: 1px solid #c8c8c8; 
+    display: flex;
+    align-items: center;
+    border-right: none; 
+    padding-right: 0;
+    margin-right: auto; 
+}
+.navbar-logo-text img {
+    height: 30px; 
+    width: auto;
+}
+.navbar-text {
+    color: var(--secondary-color) !important; 
 }
 
-/* Links da Sidebar */
+.user-avatar-small {
+    background-color: transparent; 
+    color: var(--secondary-color);
+    width: auto; 
+    height: auto;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 24px; 
+    border: none; 
+    padding-left: 5px;
+}
+
+/* SIDEBAR: Laranja e Estrutura */
+#sidebar-wrapper {
+    min-height: 90vh;
+    width: 200px; 
+    background-color: var(--sidebar-bg) !important; 
+    color: white; 
+    border-right: 1px solid rgba(255, 255, 255, 0.3); 
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-heading {
+    min-height: 59px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+    padding: 0;
+    margin: 0;
+    display: none; 
+}
+
+/* LINKS DA SIDEBAR: Cor do texto (Preto) e Espaçamento */
 .list-group-item {
     border: none !important;
-    background-color: transparent !important;
-    color: var(--text-dark) !important; 
-    padding: 0.75rem 1.25rem !important;
+    background-color: var(--sidebar-bg) !important; 
+    /* COR DO TEXTO DOS ITENS INATIVOS É PRETA (conforme imagem) */
+    color: var(--secondary-color) !important; 
+    
+    /* Espaçamento leve vertical e horizontal (ajustado para a imagem) */
+    padding: 10px 15px !important; 
     transition: background-color 0.2s, color 0.2s;
     font-weight: 500;
+    display: flex !important;
+    align-items: center;
+    /* Adicionado para garantir que itens inativos não tenham borda arredondada */
+    border-radius: 0; 
+}
+
+/* ÍCONES: Cor do ícone é preta nos itens inativos */
+.list-group-item i,
+.list-group-item svg {
+    margin-right: 12px; 
+    font-size: 1.1em; 
+    /* Cor do ícone é PRETA */
+    color: var(--secondary-color); 
 }
 
 .list-group-item:hover {
-    background-color: #dcdcdc !important; 
-    color: var(--primary-color) !important; 
+    background-color: rgba(0, 0, 0, 0.1) !important; /* Ligeiro escurecimento */
+    color: var(--secondary-color) !important; 
     font-weight: 600; 
 }
 
-/* MENU ATIVO: Laranja forte (Nova cor primária) */
+/* MENU ATIVO: Fundo Cinza Claro com Texto Preto */
 .active-menu {
-    background-color: var(--primary-color) !important; 
-    color: white !important; 
+    /* MUDANÇA: Fundo do item ativo (cinza claro) */
+    background-color: var(--active-menu-bg) !important; 
+    color: var(--secondary-color) !important; 
     font-weight: 600; 
-    border-radius: 0.25rem; 
-    margin: 0.5rem 0.75rem; 
-    padding: 0.75rem 1.25rem !important; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    
+    /* NOVO: Cantos levemente arredondados */
+    border-radius: 5px !important; 
+    
+    /* NOVO: Espaçamento vertical para que não fique colado */
+    margin-top: 5px !important; 
+    margin-bottom: 5px !important; 
+    
+    /* NOVO: Pequena margem lateral para que o card não toque as bordas */
+    margin-left: 5px !important; 
+    
+    /* Largura ajustada para que o card fique centralizado na sidebar com as margens */
+    width: calc(100% - 10px) !important;
+    
+    padding: 10px 15px !important; 
+    box-shadow: none !important; 
 }
 
 .active-menu:hover {
-    background-color: var(--primary-color) !important; 
-    color: white !important;
+    background-color: #dcdcdc !important; /* Ligeiro escurecimento no hover do ativo */
+    color: var(--secondary-color) !important;
+}
+/* Cor dos Ícones no item ativo (Preto) */
+.active-menu i,
+.active-menu svg {
+    color: var(--secondary-color); 
 }
 
+/* Rodapé da Sidebar */
+.list-group-flush {
+    flex-grow: 1;
+}
+.sidebar-footer {
+    position: static; 
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); 
+    background-color: var(--sidebar-bg) !important; 
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem;
+}
+.sidebar-footer .list-group-item {
+    font-size: 0.9rem; 
+}
+
+
+/* CONTEÚDO PRINCIPAL */
 #page-content-wrapper {
     min-width: calc(100% - 250px); 
     background-color: var(--content-bg);
     flex-grow: 1;
 }
 
-/* NAVBAR SUPERIOR: Verde Escuro (Nova cor secundária) */
-.navbar {
-    background-color: var(--secondary-color) !important; 
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    padding: 1rem; 
-}
-
-.navbar-text {
-    color: white !important; 
-}
-
-.navbar h5 {
-    color: white !important; 
-}
-
-.user-avatar-small {
-    /* Mantido Laranja para contraste */
-    background-color: var(--primary-color);
-    color: white;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-/* Estilo para os cards de Ações Rápidas */
+/* Estilos para Cards e Tabela (MANTIDOS) */
 .action-card {
     border: 1px solid #ddd;
-    border-left: 5px solid var(--primary-color); /* Borda laranja forte */
+    border-left: 5px solid var(--primary-color); 
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
     background-color: white;
     border-radius: 0.5rem;
 }
-
 .action-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
-
 .card-title {
-    color: var(--text-dark);
+    color: var(--secondary-color); 
 }
-
 .card-text {
     color: #6c757d; 
 }
-
-
-
-.sidebar-footer {
-    position: sticky; 
-    bottom: 0;
-    width: 100%;
-    border-top: 1px solid #c8c8c8; 
-    background-color: var(--sidebar-bg); 
-    padding-top: 0.5rem; 
-    padding-bottom: 0.5rem;
-}
-
-.sidebar-footer .list-group-item {
-    font-size: 0.9rem; 
-}
-
-/* Estilos para Tabela */
 .table-dark-custom {
-    background-color: var(--secondary-color) !important; /* Cinza Escuro */
-    color: white !important;
+    background-color: var(--secondary-color) !important; 
+    color: white !important; 
 }
 .table-dark-custom th {
     border-color: rgba(255, 255, 255, 0.2) !important;
