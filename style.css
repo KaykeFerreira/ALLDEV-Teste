@@ -334,26 +334,6 @@
   .menu-toggle {
     display: none !important;
   }
-}
 
-/* Correção para permitir clique no menu lateral no celular */
-#sidebar-wrapper {
-  position: fixed;
-  top: 56px; /* altura aproximada da navbar superior */
-  left: 0;
-  height: calc(100% - 56px);
-  z-index: 1050; /* fica acima do conteúdo */
-  background-color: #fff; /* mantém o fundo claro */
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
-}
 
-#wrapper.toggled #sidebar-wrapper {
-  transform: translateX(0);
-}
-
-#page-content-wrapper {
-  flex: 1;
-  transition: margin-left 0.3s ease;
-}
 
