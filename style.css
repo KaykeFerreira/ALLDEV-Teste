@@ -265,6 +265,7 @@
         height: 100%;
         z-index: 2000;
         transition: left 0.3s ease;
+        z-index: 2000; /* Fica acima do navbar */
     }
 
     /* Quando o menu abre */
@@ -288,7 +289,7 @@
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 2100;
+        z-index: 1000;
     }
 
     /* Ajusta margens para o conteúdo não ficar sob a navbar */
@@ -370,4 +371,5 @@
         font-size: 20px;
     }
 }
+
 
