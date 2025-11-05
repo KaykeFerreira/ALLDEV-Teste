@@ -1,73 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
 
+    // --- LOGIN SIMPLES ---
     if (loginForm) {
         loginForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Evita o envio padrão do formulário
+            event.preventDefault();
 
             const usuario = document.getElementById('usuario').value;
             const senha = document.getElementById('senha').value;
 
-            // Lógica de autenticação simplificada (apenas para simulação)
             if (usuario === 'admin' && senha === '123') {
-                // Armazena um estado de login simples e redireciona
                 sessionStorage.setItem('loggedIn', 'true');
-                window.location.href = 'dashboard.html'; 
+                window.location.href = 'dashboard.html';
             } else {
                 alert('Usuário ou senha incorretos.');
             }
         });
     }
 
-    // Função de verificação de login para páginas seguras
+    // --- VERIFICA LOGIN EM PÁGINAS RESTRITAS ---
     function checkLogin() {
-        if (window.location.pathname.includes('dashboard.html') || 
-            window.location.pathname.includes('estoque.html')) {
-            if (sessionStorage.getItem('loggedIn') !== 'true') {
-                window.location.href = 'index.html'; // Redireciona para login se não estiver logado
-            }
+        const restrictedPages = ['dashboard.html', 'estoque.html', 'fornecedores.html', 'clientes.html', 'vendas.html'];
+        const currentPage = window.location.pathname.split('/').pop();
+
+        if (restrictedPages.includes(currentPage) && sessionStorage.getItem('loggedIn') !== 'true') {
+            window.location.href = 'index.html';
         }
     }
 
     checkLogin();
+
+    // --- CONTROLE DO MENU LATERAL ---
+    const toggleBtn = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar-wrapper');
+
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // evita fechamento imediato
+            document.body.classList.toggle('sidebar-open');
+        });
+
+        // Fecha ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (
+                document.body.classList.contains('sidebar-open') &&
+                !sidebar.contains(e.target) &&
+                !toggleBtn.contains(e.target)
+            ) {
+                document.body.classList.remove('sidebar-open');
+            }
+        });
+
+        // Fecha ao clicar em um item do menu
+        sidebar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.body.classList.remove('sidebar-open');
+            });
+        });
+    }
 });
 
-// Adiciona uma função de Logout que pode ser chamada na próxima tela
+// --- LOGOUT ---
 function logout() {
     sessionStorage.removeItem('loggedIn');
     window.location.href = 'index.html';
-
 }
-// Fecha o menu lateral ao clicar fora dele
-document.addEventListener('click', function (e) {
-  const sidebar = document.getElementById('sidebar-wrapper');
-  const toggleBtn = document.querySelector('.menu-toggle');
-
-  if (
-    document.body.classList.contains('sidebar-open') &&
-    !sidebar.contains(e.target) &&
-    !toggleBtn.contains(e.target)
-  ) {
-    document.body.classList.remove('sidebar-open');
-  }
-});
-// Controle do menu lateral (responsivo)
-document.addEventListener("DOMContentLoaded", function () {
-  const sidebar = document.getElementById("sidebar-wrapper");
-  const menuButton = document.getElementById("menu-toggle");
-
-  if (menuButton) {
-    menuButton.addEventListener("click", function () {
-      sidebar.classList.toggle("active");
-    });
-  }
-
-  // Fecha o menu ao clicar em um link
-  document.querySelectorAll("#sidebar-wrapper a").forEach(link => {
-    link.addEventListener("click", () => {
-      sidebar.classList.remove("active");
-    });
-  });
-});
-
-
