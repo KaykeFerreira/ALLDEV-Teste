@@ -10,9 +10,15 @@
 </head>
 <body class="dashboard-page">
 
+    <!-- Navbar superior -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="top-navbar">
         <div class="container-fluid">
-            
+
+            <!-- Botão do menu lateral (visível apenas em telas pequenas) -->
+            <button class="btn btn-primary d-lg-none me-2" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
             <div class="navbar-logo-text">
                 <img src="caminho/para/o/logo-alldev-navbar.png" alt="AllDev Logo">
             </div>
@@ -27,8 +33,11 @@
             </div>
         </div>
     </nav>
+
+    <!-- Wrapper -->
     <div class="d-flex" id="wrapper">
 
+        <!-- Sidebar -->
         <div class="bg-light border-end" id="sidebar-wrapper">
             <div class="sidebar-heading"></div> 
             
@@ -60,21 +69,20 @@
             </div>
         </div>
 
+        <!-- Conteúdo -->
         <div id="page-content-wrapper">
-            
             <div class="container-fluid p-4">
                 <h2 class="mb-4">Estoque</h2>
 
                 <div class="card p-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        
                         <div class="input-group w-50">
                             <input type="text" class="form-control" placeholder="Pesquisar produtos...">
                             <button class="btn btn-outline-secondary" type="button">
                                 <i class="fas fa-search"></i> Buscar
                             </button>
                         </div>
-                        
+
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCadastroEstoque">
                             <i class="fas fa-plus"></i> Novo
                         </button>
@@ -112,7 +120,7 @@
                                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
                                     </td>
                                 </tr>
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -120,6 +128,7 @@
         </div>
     </div>
 
+    <!-- Modal de Cadastro -->
     <div class="modal fade" id="modalCadastroEstoque" tabindex="-1" aria-labelledby="modalCadastroEstoqueLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -153,6 +162,14 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const wrapper = document.getElementById("wrapper");
+
+        menuToggle.addEventListener("click", () => {
+            wrapper.classList.toggle("toggled");
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
