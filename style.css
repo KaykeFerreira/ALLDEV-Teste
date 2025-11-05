@@ -1,21 +1,18 @@
-/* Variáveis de cores baseadas no seu tema */
+/* ==================== VARIÁVEIS ==================== */
 :root {
-    --primary-color: #FF6828; /* Laranja forte (Fundo da Sidebar) */
-    --secondary-color: #000000; /* Preto (Texto do menu e Botões) */
-    --accent-light-bg: #fff0e3; /* Fundo da caixa de login */
-    
-    --sidebar-bg: var(--primary-color); 
-    --active-menu-bg: #E5E5E5; /* Cinza claro para item ativo (conforme imagem) */
-    
-    --content-bg: #f4f4f9; /* Fundo da área de conteúdo */
-    
+    --primary-color: #FF6828; 
+    --secondary-color: #000000; 
+    --accent-light-bg: #fff0e3; 
+    --sidebar-bg: var(--primary-color);
+    --active-menu-bg: #E5E5E5;
+    --content-bg: #f4f4f9;
     --text-dark: #000000; 
-    --navbar-bg: #FFFFFF; /* Cor de fundo da Navbar (Branco) */
+    --navbar-bg: #FFFFFF;
 }
 
-/* --- Estilos da Página de Login (MANTIDOS) --- */
+/* ==================== LOGIN ==================== */
 .login-page {
-    background: linear-gradient(to bottom, #f27136, #d5d5b3, #94b19f); 
+    background: linear-gradient(to bottom, #f27136, #d5d5b3, #94b19f);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,15 +23,15 @@
 
 .login-container {
     width: 90%;
-    max-width: 400px; 
+    max-width: 400px;
     padding: 50px;
-    background-color: var(--accent-light-bg); 
+    background-color: var(--accent-light-bg);
     box-shadow: 0 0 100px #FFBD9A;
     border-radius: 8px;
 }
 
 .logo-text {
-    font-size: 24px; 
+    font-size: 24px;
     color: var(--secondary-color);
     text-align: center;
     margin-bottom: 20px;
@@ -76,7 +73,7 @@
 }
 
 .btn-login:hover {
-    background-color: #333333; 
+    background-color: #333333;
     border-color: #333333;
     color: white;
 }
@@ -87,175 +84,137 @@
     margin-top: 15px;
 }
 
-/* --- Estilos para o Dashboard e páginas internas --- */
+/* ==================== LAYOUT BASE ==================== */
 .dashboard-page {
-    background-color: var(--content-bg); 
+    background-color: var(--content-bg);
 }
 
 #wrapper {
     display: flex;
 }
 
-/* NAVBAR SUPERIOR */
+/* ==================== NAVBAR SUPERIOR ==================== */
 #top-navbar.navbar {
-    background-color: var(--navbar-bg) !important; 
+    background-color: var(--navbar-bg) !important;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     position: sticky;
     top: 0;
     z-index: 1020;
-    border-bottom: 1px solid #e0e0e0 !important; 
-    width: 100%; 
+    border-bottom: 1px solid #e0e0e0 !important;
+    width: 100%;
 }
 
-/* Estilo do Logo/Nome do Sistema na Navbar */
 .navbar-logo-text {
-    width: auto; 
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--secondary-color); 
+    color: var(--secondary-color);
     display: flex;
     align-items: center;
-    border-right: none; 
-    padding-right: 0;
-    margin-right: auto; 
+    margin-right: auto;
 }
 .navbar-logo-text img {
-    height: 30px; 
-    width: auto;
+    height: 30px;
 }
 .navbar-text {
-    color: var(--secondary-color) !important; 
+    color: var(--secondary-color) !important;
 }
-
 .user-avatar-small {
-    background-color: transparent; 
     color: var(--secondary-color);
-    width: auto; 
-    height: auto;
-    border-radius: 0;
+    font-weight: bold;
+    font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 24px; 
-    border: none; 
-    padding-left: 5px;
 }
 
-/* SIDEBAR: Laranja e Estrutura */
+/* ==================== SIDEBAR ==================== */
 #sidebar-wrapper {
     min-height: 90vh;
-    width: 200px; 
-    background-color: var(--sidebar-bg) !important; 
-    color: white; 
-    border-right: 1px solid rgba(255, 255, 255, 0.3); 
+    width: 200px;
+    background-color: var(--sidebar-bg) !important;
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     flex-direction: column;
+    transition: all 0.3s ease;
+    z-index: 1050;
 }
 
 .sidebar-heading {
-    min-height: 59px; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
-    padding: 0;
-    margin: 0;
-    display: none; 
+    display: none;
 }
 
-/* LINKS DA SIDEBAR: Cor do texto (Preto) e Espaçamento */
+/* LINKS DA SIDEBAR */
 .list-group-item {
     border: none !important;
-    background-color: var(--sidebar-bg) !important; 
-    /* COR DO TEXTO DOS ITENS INATIVOS É PRETA (conforme imagem) */
-    color: var(--secondary-color) !important; 
-    
-    /* Espaçamento leve vertical e horizontal (ajustado para a imagem) */
-    padding: 10px 15px !important; 
+    background-color: var(--sidebar-bg) !important;
+    color: var(--secondary-color) !important;
+    padding: 10px 15px !important;
     transition: background-color 0.2s, color 0.2s;
     font-weight: 500;
     display: flex !important;
     align-items: center;
-    /* Adicionado para garantir que itens inativos não tenham borda arredondada */
-    border-radius: 0; 
+    border-radius: 0;
 }
 
-/* ÍCONES: Cor do ícone é preta nos itens inativos */
 .list-group-item i,
 .list-group-item svg {
-    margin-right: 12px; 
-    font-size: 1.1em; 
-    /* Cor do ícone é PRETA */
-    color: var(--secondary-color); 
+    margin-right: 12px;
+    font-size: 1.1em;
+    color: var(--secondary-color);
 }
 
 .list-group-item:hover {
-    background-color: rgba(0, 0, 0, 0.1) !important; /* Ligeiro escurecimento */
-    color: var(--secondary-color) !important; 
-    font-weight: 600; 
-}
-
-/* MENU ATIVO: Fundo Cinza Claro com Texto Preto */
-.active-menu {
-    /* MUDANÇA: Fundo do item ativo (cinza claro) */
-    background-color: var(--active-menu-bg) !important; 
-    color: var(--secondary-color) !important; 
-    font-weight: 600; 
-    
-    /* NOVO: Cantos levemente arredondados */
-    border-radius: 5px !important; 
-    
-    /* NOVO: Espaçamento vertical para que não fique colado */
-    margin-top: 5px !important; 
-    margin-bottom: 5px !important; 
-    
-    /* NOVO: Pequena margem lateral para que o card não toque as bordas */
-    margin-left: 5px !important; 
-    
-    /* Largura ajustada para que o card fique centralizado na sidebar com as margens */
-    width: calc(100% - 10px) !important;
-    
-    padding: 10px 15px !important; 
-    box-shadow: none !important; 
-}
-
-.active-menu:hover {
-    background-color: #dcdcdc !important; /* Ligeiro escurecimento no hover do ativo */
+    background-color: rgba(0, 0, 0, 0.1) !important;
     color: var(--secondary-color) !important;
+    font-weight: 600;
 }
-/* Cor dos Ícones no item ativo (Preto) */
+
+/* ITEM ATIVO */
+.active-menu {
+    background-color: var(--active-menu-bg) !important;
+    color: var(--secondary-color) !important;
+    font-weight: 600;
+    border-radius: 5px !important;
+    margin: 5px !important;
+    width: calc(100% - 10px) !important;
+    padding: 10px 15px !important;
+}
+.active-menu:hover {
+    background-color: #dcdcdc !important;
+}
 .active-menu i,
 .active-menu svg {
-    color: var(--secondary-color); 
+    color: var(--secondary-color);
 }
 
-/* Rodapé da Sidebar */
+/* Rodapé */
 .list-group-flush {
     flex-grow: 1;
 }
 .sidebar-footer {
-    position: static; 
+    position: static;
     width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.3); 
-    background-color: var(--sidebar-bg) !important; 
-    padding-top: 0.5rem; 
-    padding-bottom: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: var(--sidebar-bg) !important;
+    padding: 0.5rem 0;
 }
 .sidebar-footer .list-group-item {
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
 }
 
-
-/* CONTEÚDO PRINCIPAL */
+/* ==================== CONTEÚDO PRINCIPAL ==================== */
 #page-content-wrapper {
-    min-width: calc(100% - 250px); 
+    min-width: calc(100% - 250px);
     background-color: var(--content-bg);
     flex-grow: 1;
 }
 
-/* Estilos para Cards e Tabela (MANTIDOS) */
+/* ==================== CARDS E TABELAS ==================== */
 .action-card {
     border: 1px solid #ddd;
-    border-left: 5px solid var(--primary-color); 
+    border-left: 5px solid var(--primary-color);
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
     background-color: white;
@@ -266,15 +225,111 @@
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 .card-title {
-    color: var(--secondary-color); 
+    color: var(--secondary-color);
 }
 .card-text {
-    color: #6c757d; 
+    color: #6c757d;
 }
 .table-dark-custom {
-    background-color: var(--secondary-color) !important; 
-    color: white !important; 
+    background-color: var(--secondary-color) !important;
+    color: white !important;
 }
 .table-dark-custom th {
     border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+
+/* --- Tablets (até 992px) --- */
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        width: 180px;
+    }
+    #page-content-wrapper {
+        min-width: calc(100% - 180px);
+    }
+}
+
+/* --- Celulares (até 768px) --- */
+@media (max-width: 768px) {
+    #wrapper {
+        flex-direction: column;
+    }
+
+    /* Sidebar escondida inicialmente */
+    #sidebar-wrapper {
+        position: fixed;
+        top: 0;
+        left: -220px;
+        width: 200px;
+        height: 100%;
+        z-index: 2000;
+        transition: left 0.3s ease;
+    }
+
+    /* Quando o menu abre */
+    body.sidebar-open #sidebar-wrapper {
+        left: 0;
+    }
+
+    /* Ajusta o conteúdo quando o menu está aberto */
+    #page-content-wrapper {
+        min-width: 100%;
+        transition: filter 0.3s ease;
+    }
+
+    body.sidebar-open #page-content-wrapper {
+        filter: brightness(0.6);
+        pointer-events: none; /* evita clique no conteúdo */
+    }
+
+    /* Navbar mantém visibilidade */
+    #top-navbar.navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 2100;
+    }
+
+    /* Ajusta margens para o conteúdo não ficar sob a navbar */
+    #page-content-wrapper {
+        padding-top: 70px;
+    }
+
+    /* Estilos dos cards mais compactos */
+    .action-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* --- Telas muito pequenas (até 480px) --- */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .btn-login {
+        font-size: 15px;
+    }
+
+    #sidebar-wrapper {
+        width: 180px;
+    }
+
+    .list-group-item {
+        padding: 8px 10px !important;
+        font-size: 14px;
+    }
+
+    .navbar-logo-text {
+        font-size: 1.2rem;
+    }
+
+    .user-avatar-small {
+        font-size: 20px;
+    }
 }
