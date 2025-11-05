@@ -36,4 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function logout() {
     sessionStorage.removeItem('loggedIn');
     window.location.href = 'index.html';
+
 }
+// Fecha o menu lateral ao clicar fora dele
+document.addEventListener('click', function (e) {
+  const sidebar = document.getElementById('sidebar-wrapper');
+  const toggleBtn = document.querySelector('.menu-toggle');
+
+  if (
+    document.body.classList.contains('sidebar-open') &&
+    !sidebar.contains(e.target) &&
+    !toggleBtn.contains(e.target)
+  ) {
+    document.body.classList.remove('sidebar-open');
+  }
+});
