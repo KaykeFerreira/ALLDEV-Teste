@@ -400,15 +400,6 @@
     left: 0;
   }
 
-  /* Fundo escurecido quando menu abre */
-  body.sidebar-open::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1040;
-  }
-
   /* Conteúdo abaixo */
   #page-content-wrapper {
     position: relative;
@@ -416,11 +407,7 @@
   }
 }
 
-/* Esconde o botão no PC */
-@media (min-width: 992px) {
-  .menu-toggle {
-    display: none !important;
-  }
-}
+
+
 
 
