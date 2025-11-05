@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
 
-    // --- LOGIN SIMPLES ---
+    // --- LOGIN ---
     if (loginForm) {
         loginForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -18,44 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- VERIFICA LOGIN EM PÁGINAS RESTRITAS ---
-    function checkLogin() {
-        const restrictedPages = ['dashboard.html', 'estoque.html', 'fornecedores.html', 'clientes.html', 'vendas.html'];
-        const currentPage = window.location.pathname.split('/').pop();
+    // --- VERIFICA LOGIN ---
+    const restrictedPages = ['dashboard.html', 'estoque.html', 'fornecedores.html', 'clientes.html', 'vendas.html'];
+    const currentPage = window.location.pathname.split('/').pop();
 
-        if (restrictedPages.includes(currentPage) && sessionStorage.getItem('loggedIn') !== 'true') {
-            window.location.href = 'index.html';
-        }
+    if (restrictedPages.includes(currentPage) && sessionStorage.getItem('loggedIn') !== 'true') {
+        window.location.href = 'index.html';
     }
 
-    checkLogin();
-
-    // --- CONTROLE DO MENU LATERAL ---
-    const toggleBtn = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar-wrapper');
+    // --- MENU LATERAL ---
+    const toggleBtn = document.getElementById('menu-toggle') || document.querySelector('.menu-toggle');
+    const sidebar = document.getElementById('sidebar-wrapper') || document.querySelector('.sidebar');
 
     if (toggleBtn && sidebar) {
         toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // evita fechamento imediato
-            document.body.classList.toggle('sidebar-open');
+            e.stopPropagation();
+            sidebar.classList.toggle('active');
         });
 
         // Fecha ao clicar fora
         document.addEventListener('click', (e) => {
             if (
-                document.body.classList.contains('sidebar-open') &&
+                sidebar.classList.contains('active') &&
                 !sidebar.contains(e.target) &&
                 !toggleBtn.contains(e.target)
             ) {
-                document.body.classList.remove('sidebar-open');
+                sidebar.classList.remove('active');
             }
         });
 
-        // Fecha ao clicar em um item do menu
+        // Fecha ao clicar em qualquer link do menu
         sidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.body.classList.remove('sidebar-open');
-            });
+            link.addEventListener('click', () => sidebar.classList.remove('active'));
         });
     }
 });
