@@ -13,10 +13,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="top-navbar">
         <div class="container-fluid">
             
-            <!-- Botão hamburguer (visível só no celular) -->
-            <button class="btn menu-toggle me-3" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
+      <!-- LOGO + BOTÃO MENU -->
+      <div class="d-flex align-items-center">
+        <!-- BOTÃO MENU (só aparece no celular) -->
+        <button class="menu-toggle d-lg-none me-2" onclick="document.body.classList.toggle('sidebar-open')">
+          ☰
+        </button>
 
             <div class="navbar-logo-text">
                 <img src="caminho/para/o/logo-alldev-navbar.png" alt="AllDev Logo">
@@ -175,3 +177,4 @@
     </script>
 </body>
 </html>
+
