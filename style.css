@@ -280,134 +280,58 @@
 
 }
 
-/* =========================================================
-   AJUSTES DE RESPONSIVIDADE (sem alterar estilo original)
-   ========================================================= */
-
-/* Telas até 1024px - tablets */
-@media (max-width: 1024px) {
-  #wrapper {
-    flex-direction: column;
-  }
-
-  #sidebar-wrapper {
-    width: 100%;
-    min-height: auto;
-    flex-direction: row;
-    justify-content: space-around;
-    overflow-x: auto;
-  }
-
-  #page-content-wrapper {
-    min-width: 100%;
-  }
-
-  .list-group-item {
-    text-align: center;
-    font-size: 14px;
-    padding: 8px;
-  }
-}
-
-/* Telas até 768px - celulares */
-@media (max-width: 768px) {
-  /* Esconde sidebar padrão */
-  #sidebar-wrapper {
-    display: none;
-  }
-
-  /* Mostra botão de menu no topo (hamburguer) */
-  .menu-toggle {
-    display: inline-block;
-    background: var(--primary-color);
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    margin: 10px;
-    font-size: 18px;
-  }
-
-  /* Sidebar aparece ao ativar a classe sidebar-open no body */
-  .sidebar-open #sidebar-wrapper {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 75%;
-    height: calc(100vh - 60px);
-    z-index: 999;
-    background: var(--sidebar-bg);
-    overflow-y: auto;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Navbar ajustada */
-  #top-navbar.navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar-logo-text {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Ajuste para o container de login */
-  .login-container {
-    width: 95%;
-    padding: 30px;
-  }
-
-  .logo-text {
-    font-size: 20px;
-  }
-
-  /* Cards e tabelas ocupam 100% */
-  .action-card,
-  .table,
-  .card {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  /* Texto menor e margens reduzidas */
-  body,
-  p,
-  span,
-  a,
-  button {
-    font-size: 14px;
-  }
-}
-/* === Ajustes do menu lateral mobile === */
+/* === Ajuste final do menu lateral para celular === */
 @media (max-width: 991px) {
+  #wrapper {
+    position: relative;
+  }
+
   #sidebar-wrapper {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: -260px;
     width: 250px;
-    height: 100vh;
-    background-color: #ff642f; /* mantém seu laranja */
+    height: 100vh; /* garante que cobre tudo */
+    background-color: #ff642f; /* seu laranja */
     color: #fff;
     z-index: 1050;
     transition: left 0.3s ease;
-    overflow-y: auto;
+    overflow-y: auto; /* permite rolar se o menu for longo */
+    display: block;
   }
 
   body.sidebar-open #sidebar-wrapper {
     left: 0;
   }
 
-  /* Conteúdo abaixo */
+  /* Fundo escurecido quando o menu estiver aberto */
+  body.sidebar-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1040;
+  }
+
   #page-content-wrapper {
     position: relative;
     z-index: 1;
   }
+
+  /* Mantém o botão visível no mobile */
+  .menu-toggle {
+    display: inline-block !important;
+    background-color: #ff642f;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
 }
 
-
-
-
-
+/* Esconde o botão no PC */
+@media (min-width: 992px) {
+  .menu-toggle {
+    display: none !important;
+  }
+}
