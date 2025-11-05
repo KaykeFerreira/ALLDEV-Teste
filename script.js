@@ -51,3 +51,23 @@ document.addEventListener('click', function (e) {
     document.body.classList.remove('sidebar-open');
   }
 });
+// Controle do menu lateral (responsivo)
+document.addEventListener("DOMContentLoaded", function () {
+  const sidebar = document.getElementById("sidebar-wrapper");
+  const menuButton = document.getElementById("menu-toggle");
+
+  if (menuButton) {
+    menuButton.addEventListener("click", function () {
+      sidebar.classList.toggle("active");
+    });
+  }
+
+  // Fecha o menu ao clicar em um link
+  document.querySelectorAll("#sidebar-wrapper a").forEach(link => {
+    link.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+    });
+  });
+});
+
+
