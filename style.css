@@ -381,4 +381,46 @@
     font-size: 14px;
   }
 }
+/* === Ajustes do menu lateral mobile === */
+@media (max-width: 991px) {
+  #sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 250px;
+    height: 100vh;
+    background-color: #ff642f; /* mantém seu laranja */
+    color: #fff;
+    z-index: 1050;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+  }
+
+  body.sidebar-open #sidebar-wrapper {
+    left: 0;
+  }
+
+  /* Fundo escurecido quando menu abre */
+  body.sidebar-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1040;
+  }
+
+  /* Conteúdo abaixo */
+  #page-content-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Esconde o botão no PC */
+@media (min-width: 992px) {
+  .menu-toggle {
+    display: none !important;
+  }
+}
+
 
