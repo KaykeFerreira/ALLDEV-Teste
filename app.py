@@ -93,7 +93,7 @@ def listar_produtos():
 def cadastrar_produto():
     data = request.json
     executar_insert(
-        "INSERT INTO produtos (nome, categoria_id, preco, estoque_id) VALUES (%s, %s, %s, %s)",
+        "INSERT INTO produto (nome, categoria_id, preco, estoque_id) VALUES (%s, %s, %s, %s)",
         (data['nome'], data['categoria_id'], data['preco'], data['estoque_id'])
     )
     return jsonify({"message": "Produto cadastrado com sucesso!"}), 201
@@ -170,3 +170,4 @@ def cadastrar_pedido():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
