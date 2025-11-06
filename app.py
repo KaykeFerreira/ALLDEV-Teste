@@ -3,7 +3,7 @@ from flask_cors import CORS
 import mysql.connector
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://main.d2oxlcbv3qgtnh.amplifyapp.com"}})
 
 # -------------------------------------------------------------
 # CONFIGURAÇÃO DO BANCO DE DADOS
@@ -170,4 +170,5 @@ def cadastrar_pedido():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
