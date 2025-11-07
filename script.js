@@ -134,10 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         cadastrarEntidade("produto", data, () =>
-            carregarTabela("produto", "tableProdutos", ["id", "nome", "categoria_id", "preco", "estoque_id"])
+            carregarTabela("produto", "tableProduto", ["id", "nome", "categoria_id", "preco", "estoque_id"])
         );
     });
-    carregarTabela("produto", "tableProdutos", ["id", "nome", "categoria_id", "preco", "estoque_id"]);
+    carregarTabela("produto", "tableProduto", ["id", "nome", "categoria_id", "preco", "estoque_id"]);
 
     // --- FORNECEDORES ---
     document.querySelector("#btnSalvarFornecedor")?.addEventListener("click", () => {
@@ -199,5 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarTabela("pedido","tablePedidos", ["id","cliente_id","data","status","desconto","total"]);
 
 });
+
 
 
