@@ -197,8 +197,9 @@ def cadastrar_pedido():
 # -------------------------------------------------------------
 # EXECUÇÃO COM HTTPS
 # -------------------------------------------------------------
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Executa o Flask com HTTPS automático
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 
