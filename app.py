@@ -4,7 +4,9 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Libera acesso do seu domínio Amplify e também local (para testes)
+# -------------------------------------------------------------
+# CONFIGURAÇÃO DE CORS (libera o domínio da AWS e localhost)
+# -------------------------------------------------------------
 CORS(app, resources={r"/*": {"origins": [
     "https://main.d20x1cbv3qgtmh.amplifyapp.com",
     "http://localhost:3000",
@@ -28,9 +30,11 @@ def get_db_connection():
 # -------------------------------------------------------------
 @app.route('/')
 def home():
-    return jsonify({"status": "Queres neste mundo ser um vencedor..."})
+    return jsonify({"status": "Servidor Flask rodando com sucesso (HTTPS ativo)!"})
 
-# -------------------- FUNÇÕES GERAIS --------------------------
+# -------------------------------------------------------------
+# FUNÇÕES GERAIS
+# -------------------------------------------------------------
 def executar_select(query, params=None):
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
@@ -48,7 +52,9 @@ def executar_insert(query, params):
     cursor.close()
     db.close()
 
-# -------------------- USUÁRIOS ------------------------------
+# -------------------------------------------------------------
+# USUÁRIOS
+# -------------------------------------------------------------
 @app.route('/usuario', methods=['GET'])
 def listar_usuarios():
     return jsonify(executar_select("SELECT * FROM usuario"))
@@ -62,7 +68,9 @@ def cadastrar_usuario():
     )
     return jsonify({"message": "Usuário cadastrado com sucesso!"}), 201
 
-# -------------------- CLIENTES ------------------------------
+# -------------------------------------------------------------
+# CLIENTES
+# -------------------------------------------------------------
 @app.route('/cliente', methods=['GET'])
 def listar_clientes():
     return jsonify(executar_select("SELECT * FROM cliente"))
@@ -76,7 +84,9 @@ def cadastrar_cliente():
     )
     return jsonify({"message": "Cliente cadastrado com sucesso!"}), 201
 
-# -------------------- CATEGORIAS ---------------------------
+# -------------------------------------------------------------
+# CATEGORIAS
+# -------------------------------------------------------------
 @app.route('/categoria', methods=['GET'])
 def listar_categorias():
     return jsonify(executar_select("SELECT * FROM categoria"))
@@ -90,10 +100,11 @@ def cadastrar_categoria():
     )
     return jsonify({"message": "Categoria cadastrada com sucesso!"}), 201
 
-# -------------------- PRODUTOS -----------------------------
+# -------------------------------------------------------------
+# PRODUTOS
+# -------------------------------------------------------------
 @app.route('/produto', methods=['GET'])
 def listar_produtos():
-    # tabela correta (produto, e não produtos)
     return jsonify(executar_select("SELECT * FROM produto"))
 
 @app.route('/produto', methods=['POST'])
@@ -105,10 +116,11 @@ def cadastrar_produto():
     )
     return jsonify({"message": "Produto cadastrado com sucesso!"}), 201
 
-# -------------------- FORNECEDORES -------------------------
+# -------------------------------------------------------------
+# FORNECEDORES
+# -------------------------------------------------------------
 @app.route('/fornecedor', methods=['GET'])
 def listar_fornecedores():
-    # nome da tabela para singular se o seu banco usar assim
     return jsonify(executar_select("SELECT * FROM fornecedor"))
 
 @app.route('/fornecedor', methods=['POST'])
@@ -120,7 +132,9 @@ def cadastrar_fornecedor():
     )
     return jsonify({"message": "Fornecedor cadastrado com sucesso!"}), 201
 
-# -------------------- MATERIAIS ----------------------------
+# -------------------------------------------------------------
+# MATERIAIS
+# -------------------------------------------------------------
 @app.route('/material', methods=['GET'])
 def listar_materiais():
     return jsonify(executar_select("SELECT * FROM material"))
@@ -134,7 +148,9 @@ def cadastrar_material():
     )
     return jsonify({"message": "Material cadastrado com sucesso!"}), 201
 
-# -------------------- ESTOQUE -----------------------------
+# -------------------------------------------------------------
+# ESTOQUE
+# -------------------------------------------------------------
 @app.route('/estoque', methods=['GET'])
 def listar_estoque():
     return jsonify(executar_select("SELECT * FROM estoque"))
@@ -148,7 +164,9 @@ def cadastrar_estoque():
     )
     return jsonify({"message": "Estoque cadastrado com sucesso!"}), 201
 
-# -------------------- PEDIDO ------------------------------
+# -------------------------------------------------------------
+# PEDIDOS
+# -------------------------------------------------------------
 @app.route('/pedido', methods=['GET'])
 def listar_pedidos():
     return jsonify(executar_select("SELECT * FROM pedido"))
@@ -159,14 +177,12 @@ def cadastrar_pedido():
     db = get_db_connection()
     cursor = db.cursor()
 
-    # Inserir pedido
     cursor.execute(
         "INSERT INTO pedido (cliente_id, data, status, desconto, total) VALUES (%s, %s, %s, %s, %s)",
         (data['cliente_id'], data['data'], data['status'], data['desconto'], data['total'])
     )
     pedido_id = cursor.lastrowid
 
-    # Inserir itens
     for item in data['itens']:
         cursor.execute(
             "INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario) VALUES (%s, %s, %s, %s)",
@@ -178,10 +194,10 @@ def cadastrar_pedido():
     db.close()
     return jsonify({"message": "Pedido cadastrado com sucesso!"}), 201
 
-
-# -------------------- EXECUÇÃO -----------------------------
+# -------------------------------------------------------------
+# EXECUÇÃO COM HTTPS
+# -------------------------------------------------------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
-
-
+    # Executa o Flask com HTTPS automático
+    app.run(host="0.0.0.0", port=5000, debug=True, ssl_context="adhoc")
 
