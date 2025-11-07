@@ -22,7 +22,7 @@ def get_db_connection():
         port=3306,
         user="root",
         password="G00d$$171",
-        database="DBALLDEV"
+        database="ALLDEV"
     )
 
 # -------------------------------------------------------------
@@ -200,6 +200,7 @@ def cadastrar_pedido():
 if __name__ == '__main__':
     # Executa o Flask com HTTPS automático
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 
 
