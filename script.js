@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNÇÃO GERAL DE CADASTRO ---
     function cadastrarEntidade(endpoint, data, callback){
-        fetch(`http://127.0.0.1:5000/${endpoint}`, {
+        fetch(`http://100.100.100.234:5000/${endpoint}`, {   // 🔧 alterado para o IP do servidor Flask
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(data)
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNÇÃO GERAL DE CARREGAR TABELAS ---
     function carregarTabela(endpoint, tbodyId, colunas){
-        fetch(`http://127.0.0.1:5000/${endpoint}`)
+        fetch(`http://100.100.100.234:5000/${endpoint}`)   // 🔧 alterado para o IP do servidor Flask
         .then(res => res.json())
         .then(items => {
             const tbody = document.querySelector(`#${tbodyId} tbody`);
@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </td></tr>`;
                 tbody.innerHTML += linha;
             });
-        });
+        })
+        .catch(err => console.error(`Erro ao carregar ${endpoint}:`, err));
     }
 
     // --- USUARIOS ---
@@ -118,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarTabela("categoria","tableCategorias", ["id","nome"]);
 
     // --- PRODUTOS ---
-document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#btnSalvarProduto")?.addEventListener("click", () => {
         const form = document.querySelector("#formProduto");
         if (!form) {
@@ -137,10 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
             carregarTabela("produto", "tableProdutos", ["id", "nome", "categoria_id", "preco", "estoque_id"])
         );
     });
-
     carregarTabela("produto", "tableProdutos", ["id", "nome", "categoria_id", "preco", "estoque_id"]);
-});
-   
 
     // --- FORNECEDORES ---
     document.querySelector("#btnSalvarFornecedor")?.addEventListener("click", () => {
