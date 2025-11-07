@@ -6,9 +6,9 @@ app = Flask(__name__)
 
 # Libera acesso do seu domínio Amplify e também local (para testes)
 CORS(app, resources={r"/*": {"origins": [
-    "https://main.d20x1cbv3qgtmh.amplifyapp.com",  # domínio Amplify
-    "http://localhost:3000",                       # opcional, se testar local
-    "http://127.0.0.1:5500"                        # opcional, se abrir pelo Live Server
+    "https://main.d20x1cbv3qgtmh.amplifyapp.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:5500"
 ]}}, supports_credentials=True, allow_headers="*")
 
 # -------------------------------------------------------------
@@ -182,5 +182,6 @@ def cadastrar_pedido():
 # -------------------- EXECUÇÃO -----------------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+
 
 
