@@ -118,17 +118,29 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarTabela("categoria","tableCategorias", ["id","nome"]);
 
     // --- PRODUTOS ---
+document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#btnSalvarProduto")?.addEventListener("click", () => {
         const form = document.querySelector("#formProduto");
+        if (!form) {
+            console.error("Formulário #formProduto não encontrado!");
+            return;
+        }
+
         const data = {
             nome: form.nome.value,
             categoria_id: form.categoria_id.value,
             preco: form.preco.value,
             estoque_id: form.estoque_id.value
         };
-        cadastrarEntidade("produto", data, () => carregarTabela("produto", "tableProdutos", ["id","nome","categoria_id","preco","estoque_id"]));
+
+        cadastrarEntidade("produto", data, () =>
+            carregarTabela("produto", "tableProdutos", ["id", "nome", "categoria_id", "preco", "estoque_id"])
+        );
     });
-    carregarTabela("produto","tableProdutos", ["id","nome","categoria_id","preco","estoque_id"]);
+
+    carregarTabela("produto", "tableProdutos", ["id", "nome", "categoria_id", "preco", "estoque_id"]);
+});
+   
 
     // --- FORNECEDORES ---
     document.querySelector("#btnSalvarFornecedor")?.addEventListener("click", () => {
@@ -190,3 +202,4 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarTabela("pedido","tablePedidos", ["id","cliente_id","data","status","desconto","total"]);
 
 });
+
