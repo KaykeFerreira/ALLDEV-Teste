@@ -3,18 +3,24 @@ from flask_cors import CORS
 import mysql.connector
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://main.d2oxlcbv3qgtnh.amplifyapp.com"}})
+
+# Libera acesso do seu domínio Amplify e também local (para testes)
+CORS(app, resources={r"/*": {"origins": [
+    "https://main.d20x1cbv3qgtmh.amplifyapp.com",  # domínio Amplify
+    "http://localhost:3000",                       # opcional, se testar local
+    "http://127.0.0.1:5500"                        # opcional, se abrir pelo Live Server
+]}})
 
 # -------------------------------------------------------------
 # CONFIGURAÇÃO DO BANCO DE DADOS
 # -------------------------------------------------------------
 def get_db_connection():
     return mysql.connector.connect(
-        host="127.0.0.234",     
-        port=3306,                     
-        user="root",            
+        host="127.0.0.234",
+        port=3306,
+        user="root",
         password="G00d$$171",
-        database="BDALLDEV"       
+        database="BDALLDEV"
     )
 
 # -------------------------------------------------------------
@@ -24,7 +30,7 @@ def get_db_connection():
 def home():
     return jsonify({"status": "Queres neste mundo ser um vencedor..."})
 
-# -------------------- ROTAS GERAIS --------------------------
+# -------------------- FUNÇÕES GERAIS --------------------------
 def executar_select(query, params=None):
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
@@ -87,7 +93,8 @@ def cadastrar_categoria():
 # -------------------- PRODUTOS -----------------------------
 @app.route('/produto', methods=['GET'])
 def listar_produtos():
-    return jsonify(executar_select("SELECT * FROM produtos"))
+    # tabela correta (produto, e não produtos)
+    return jsonify(executar_select("SELECT * FROM produto"))
 
 @app.route('/produto', methods=['POST'])
 def cadastrar_produto():
@@ -101,13 +108,14 @@ def cadastrar_produto():
 # -------------------- FORNECEDORES -------------------------
 @app.route('/fornecedor', methods=['GET'])
 def listar_fornecedores():
-    return jsonify(executar_select("SELECT * FROM fornecedores"))
+    # nome da tabela para singular se o seu banco usar assim
+    return jsonify(executar_select("SELECT * FROM fornecedor"))
 
 @app.route('/fornecedor', methods=['POST'])
 def cadastrar_fornecedor():
     data = request.json
     executar_insert(
-        "INSERT INTO fornecedores (razao_social, cnpj, email, telefone) VALUES (%s, %s, %s, %s)",
+        "INSERT INTO fornecedor (razao_social, cnpj, email, telefone) VALUES (%s, %s, %s, %s)",
         (data['razao_social'], data['cnpj'], data['email'], data['telefone'])
     )
     return jsonify({"message": "Fornecedor cadastrado com sucesso!"}), 201
@@ -148,27 +156,29 @@ def listar_pedidos():
 @app.route('/pedido', methods=['POST'])
 def cadastrar_pedido():
     data = request.json
-    executar_insert(
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    # Inserir pedido
+    cursor.execute(
         "INSERT INTO pedido (cliente_id, data, status, desconto, total) VALUES (%s, %s, %s, %s, %s)",
         (data['cliente_id'], data['data'], data['status'], data['desconto'], data['total'])
     )
-    # Capturar ID do pedido recém criado
-    db = get_db_connection()
-    cursor = db.cursor()
-    cursor.execute("SELECT LAST_INSERT_ID()")
-    pedido_id = cursor.fetchone()[0]
-    # Inserir itens do pedido
+    pedido_id = cursor.lastrowid
+
+    # Inserir itens
     for item in data['itens']:
         cursor.execute(
             "INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario) VALUES (%s, %s, %s, %s)",
             (pedido_id, item['produto_id'], item['quantidade'], item['preco_unitario'])
         )
+
     db.commit()
     cursor.close()
     db.close()
     return jsonify({"message": "Pedido cadastrado com sucesso!"}), 201
 
+
+# -------------------- EXECUÇÃO -----------------------------
 if __name__ == "__main__":
-    app.run(debug=True)
-
-
+    app.run(host="0.0.0.0", port=5000, debug=True)
