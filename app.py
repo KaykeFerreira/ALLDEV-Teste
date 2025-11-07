@@ -9,7 +9,7 @@ CORS(app, resources={r"/*": {"origins": [
     "https://main.d20x1cbv3qgtmh.amplifyapp.com",  # domínio Amplify
     "http://localhost:3000",                       # opcional, se testar local
     "http://127.0.0.1:5500"                        # opcional, se abrir pelo Live Server
-]}})
+]}}, supports_credentials=True, allow_headers="*")
 
 # -------------------------------------------------------------
 # CONFIGURAÇÃO DO BANCO DE DADOS
@@ -182,3 +182,4 @@ def cadastrar_pedido():
 # -------------------- EXECUÇÃO -----------------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+
