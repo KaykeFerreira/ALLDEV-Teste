@@ -20,7 +20,7 @@ def get_db_connection():
         port=3306,
         user="root",
         password="G00d$$171",
-        database="BDALLDEV"
+        database="DBALLDEV"
     )
 
 # -------------------------------------------------------------
@@ -182,4 +182,5 @@ def cadastrar_pedido():
 # -------------------- EXECUÇÃO -----------------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+
 
