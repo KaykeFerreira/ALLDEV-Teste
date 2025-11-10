@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNÇÃO GERAL DE CADASTRO ---
     function cadastrarEntidade(endpoint, data, callback){
-        fetch(`https://zack-unspeedy-nonmenially.ngrok-free.dev/${endpoint}`, {   // 🔧 alterado para o IP do servidor Flask
+        fetch(`http://100.100.100.234:5000/${endpoint}`, {   // 🔧 alterado para o IP do servidor Flask
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(data)
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNÇÃO GERAL DE CARREGAR TABELAS ---
     function carregarTabela(endpoint, tbodyId, colunas){
-        fetch(`https://zack-unspeedy-nonmenially.ngrok-free.dev/${endpoint}`)   // 🔧 alterado para o IP do servidor Flask
+        fetch(`http://100.100.100.234:5000/${endpoint}`)   // 🔧 alterado para o IP do servidor Flask
         .then(res => res.json())
         .then(items => {
             const tbody = document.querySelector(`#${tbodyId} tbody`);
@@ -199,6 +199,4 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarTabela("pedido","tablePedidos", ["id","cliente_id","data","status","desconto","total"]);
 
 });
-
-
 
