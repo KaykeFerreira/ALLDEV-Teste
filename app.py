@@ -18,19 +18,12 @@ CORS(app, resources={r"/*": {"origins": [
 # -------------------------------------------------------------
 def get_db_connection():
     return mysql.connector.connect(
-        host="127.0.0.234",
+        host="100.100.100.234",
         port=3306,
         user="root",
         password="G00d$$171",
         database="ALLDEV"
     )
-
-# -------------------------------------------------------------
-# ROTA DE TESTE
-# -------------------------------------------------------------
-@app.route('/')
-def home():
-    return jsonify({"status": "Servidor Flask rodando com sucesso (HTTPS ativo)!"})
 
 # -------------------------------------------------------------
 # FUNÇÕES GERAIS
@@ -51,6 +44,13 @@ def executar_insert(query, params):
     db.commit()
     cursor.close()
     db.close()
+
+# -------------------------------------------------------------
+# ROTA DE TESTE
+# -------------------------------------------------------------
+@app.route('/')
+def home():
+    return jsonify({"status": "Servidor Flask rodando com sucesso!"})
 
 # -------------------------------------------------------------
 # USUÁRIOS
@@ -200,7 +200,4 @@ def cadastrar_pedido():
 if __name__ == '__main__':
     # Executa o Flask com HTTPS automático
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-
-
 
